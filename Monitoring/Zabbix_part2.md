@@ -7,6 +7,7 @@
 
 ### Решение 1
 
+![alt text](https://github.com/DinisGaliev/netology-hw/blob/main/Monitoring/img/Zabbix_part2_1.png)
  ---
 
 ## Задание 2
@@ -17,26 +18,25 @@
 
 ### Решение 2;3:
 
+![alt text](https://github.com/DinisGaliev/netology-hw/blob/main/Monitoring/img/Zabbix_part2_2.png)
+ 
  ---
 
 ## Задание 4
 Создайте свой кастомный дашборд.
 
-
 ### Решение 4
+
+![alt text](https://github.com/DinisGaliev/netology-hw/blob/main/Monitoring/img/Zabbix_part2_4.png)
 
  ---
 
-### Задание 5* со звёздочкой
+## Задание 5* со звёздочкой
 Создайте карту и расположите на ней два своих хоста.
 
-#### Процесс выполнения
-1. Настройте между хостами линк.
-2. Привяжите к линку триггер, связанный с agent.ping одного из хостов, и установите индикатором сработавшего триггера красную пунктирную линию.
-3. Выключите хост, чей триггер добавлен в линк. Дождитесь срабатывания триггера.
+### Решение 5
 
-#### Требования к результату
-- [ ] Прикрепите в файл README.md скриншот карты, где видно, что триггер сработал, с названием «Задание 5» 
+![alt text(https://github.com/DinisGaliev/netology-hw/blob/main/Monitoring/img/Zabbix_part2_5.png)
 
  ---
 

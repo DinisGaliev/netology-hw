@@ -36,7 +36,7 @@
 
 ### Решение 5
 
-![alt text(https://github.com/DinisGaliev/netology-hw/blob/main/Monitoring/img/Zabbix_part2_5.png)
+![alt text](https://github.com/DinisGaliev/netology-hw/blob/main/Monitoring/img/Zabbix_part2_5.png)
 
  ---
 

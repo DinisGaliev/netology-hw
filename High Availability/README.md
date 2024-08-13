@@ -67,5 +67,10 @@ vrrp_instance VI_1 {
         }
 }
 ``````
+Скриншот работы основного web сервера apache2 на плавающем ip адресе
+![alt text](https://github.com/DinisGaliev/netology-hw/blob/main/High%20Availability/img/Keepalived_2.1.png)
+
+Скриншот с демонстрацией переезда плавающего ip на резервный web сервер apache2
+![alt text](https://github.com/DinisGaliev/netology-hw/blob/main/High%20Availability/img/Keepalived_2.2.png)
 
 ------

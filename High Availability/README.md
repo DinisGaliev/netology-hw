@@ -15,6 +15,7 @@
 Скриншот прохождения пакета:
 ![alt text](https://github.com/DinisGaliev/netology-hw/blob/main/High%20Availability/img/Keepalived_1.2.png)
 
+Получившаяся схема Cisco Packet Tracer [схема](https://github.com/DinisGaliev/netology-hw/blob/main/High%20Availability/hsrp_advanced_DiGaliev.pkt)
 
 ------
 

@@ -12,9 +12,13 @@
 
 ### Решение 1
 
-Получившийся скриншот
+Зарегистрировал ранер:
 
-![alt text]()
+![alt text](https://github.com/DinisGaliev/netology-hw/blob/main/Automation%20and%20CI-CD/image/GitLab1.1.png)
+
+Cкриншоты с настройками раннера:
+
+![alt text](https://github.com/DinisGaliev/netology-hw/blob/main/Automation%20and%20CI-CD/image/GitLab1.2.png)
 
 
 ---
@@ -32,6 +36,12 @@
  * скриншоты с успешно собранными сборками.
 
  ### Решение 2
+
+Скриншоты с успешной собранной сборкой:
+
+![alt text](https://github.com/DinisGaliev/netology-hw/blob/main/Automation%20and%20CI-CD/image/GitLab2.2.png)
+
+![alt text](https://github.com/DinisGaliev/netology-hw/blob/main/Automation%20and%20CI-CD/image/GitLab2.1.png)
 
  
 ---

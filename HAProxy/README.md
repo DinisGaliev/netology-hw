@@ -8,7 +8,7 @@
 
 ### Решение 1
 
-[файл конфигурации HAProxy](HAProxy/haproxy_1.cfg)
+[файл конфигурации HAProxy](haproxy_1.cfg)
 
 - Запустил два simple python сервера:
 
@@ -33,7 +33,7 @@
 
 ### Решение 2
 
-[файл конфигурации HAProxy](HAProxy/haproxy_2.cfg)
+[файл конфигурации HAProxy](haproxy_2.cfg)
 
  Запустил три simple python сервера:
 

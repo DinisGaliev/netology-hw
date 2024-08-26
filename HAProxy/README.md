@@ -8,7 +8,19 @@
 
 ### Решение 1
 
-![Скриншот](https://github.com/DinisGaliev/netology-hw/blob/main/HAProxy/img/HAProxy1.1.png)
+[файл конфигурации HAProxy](HAProxy/haproxy_1.cfg)
+
+- Запустил два simple python сервера:
+
+![image](https://github.com/DinisGaliev/netology-hw/blob/main/HAProxy/img/HAProxy1.1.png)
+
+- Балансировка Round-robin на 4 уровне:
+
+![image](https://github.com/DinisGaliev/netology-hw/blob/main/HAProxy/img/HAProxy1.2.png)
+
+- Страница статистики:
+
+![image](https://github.com/DinisGaliev/netology-hw/blob/main/HAProxy/img/HAProxy1.3.png)
 
 
 ---
@@ -20,7 +32,20 @@
 - На проверку направьте конфигурационный файл haproxy, скриншоты, где видно перенаправление запросов на разные серверы при обращении к HAProxy c использованием домена example.local и без него.
 
 ### Решение 2
-![image]
+
+[файл конфигурации HAProxy](HAProxy/haproxy_2.cfg)
+
+ Запустил три simple python сервера:
+
+![image](https://github.com/DinisGaliev/netology-hw/blob/main/HAProxy/img/HAProxy2.1.png)
+
+- Балансировка Round-robin на 7 уровне. Балансировка только http-трафика, который адресован домену example.local:
+
+![image](https://github.com/DinisGaliev/netology-hw/blob/main/HAProxy/img/HAProxy2.2.png)
+
+- Страница статистики:
+
+![image](https://github.com/DinisGaliev/netology-hw/blob/main/HAProxy/img/HAProxy2.3.png)
 
 ---
 

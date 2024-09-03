@@ -10,6 +10,10 @@
 
 ### Решение 1
 
+>rsync -avP --checksum --exclude=.* ~/ /tmp/backup
+
+![](./img/Rsync_1.png)
+
 ---
 
 ## Задание 2

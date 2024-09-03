@@ -43,7 +43,7 @@ fi
 
 /var/spool/cron/crontabs/backup
 ```
-0 0 * * * /home/night/backup.sh
+0 0 * * * /home/digaliev/backup.sh
 ```
 
 ---

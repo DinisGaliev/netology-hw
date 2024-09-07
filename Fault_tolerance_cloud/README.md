@@ -33,7 +33,15 @@
 
 ## Решение 1
 
+[main.tf](./main.tf)
 
+[users.yml](./users.yml)
+
+![](./img/Fault_tolerance_cloud_1.png
+
+![](./img/Fault_tolerance_cloud_1.2.png
+
+![](./img/Fault_tolerance_cloud_1.3.png
 
 ---
 

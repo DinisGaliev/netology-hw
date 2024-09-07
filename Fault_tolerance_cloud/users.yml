@@ -1,0 +1,7 @@
+#cloud-config
+users:
+  - name: dinis
+    shell: /bin/bash
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    ssh-authorized-keys:
+     - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQClHLFYON1nxVZBVeDLm6lA5HiQCe70DH5TpnzZ1orEJBMUbIYsSzl0CPOEcfO2vlmmo+FH1ZISt+XJ8ozOiX+g7cb0GVyMgyP3KidZ/8mx7/2PJq+z3NfWEsXkbiUsRbDyz6rVeRqstEspJclkj+sWFF64KHPmAsiCagChp5iTECsJMGuO7fZrAzGdQBjkw27NloRWC25AeSfa8hONWmA9ep8xBkR34nLeG2Nkqn8fSoX3cmMkd6HAF1+90oClqk9APKAcuAeMZDJEqEcwtl5GAjhd+oGG2tT20+1hUoAoDnVsA6oGUeRxzwNW2W2zjNh/LQ4/H/USQcroA+s/9Ef+pSlCxAe5gmZlsVUVU9nEP4yO6Q7uZGpuk988wsYIsvHY07KenBngqeFOhp406Q9g2qnSvkuurl0MPdrXaOYxgSnndlsGdiGqTIF8/2drEW/uAEOjnujv5Ul2r7Gg7WmhAB10oscF5vL7uyOifjZm/e2PKEQscQnSJHftnb55bWk= digaliev@debian-lab 

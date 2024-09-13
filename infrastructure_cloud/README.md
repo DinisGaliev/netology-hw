@@ -1,21 +1,8 @@
-# Домашнее задание к занятию «Подъём инфраструктуры в Yandex Cloud»
-
-### Оформление домашнего задания
-
-1. Домашнее задание выполните в [Google Docs](https://docs.google.com/) и отправьте на проверку ссылку на ваш документ в личном кабинете.  
-1. В названии файла укажите номер лекции и фамилию студента. Пример названия: 7.3. Подъём инфраструктуры в Yandex Cloud — Александр Александров.
-1. Перед отправкой проверьте, что доступ для просмотра открыт всем, у кого есть ссылка. Если нужно прикрепить дополнительные ссылки, добавьте их в свой Google Docs.
-
-Вы можете прислать решение в виде ссылки на ваш репозийторий в GitHub, для этого воспользуйтесь [шаблоном для домашнего задания](https://github.com/netology-code/sys-pattern-homework).
-
- ---
-## Важно
-
-Перед началом работы над дипломным заданием изучите [Инструкция по экономии облачных ресурсов](https://github.com/netology-code/devops-materials/blob/master/cloudwork.MD).
+# Домашнее задание к занятию «Подъём инфраструктуры в Yandex Cloud» Галиев Д.Ф.
 
 ---
 
-### Задание 1 
+## Задание 1 
 
 **Выполните действия, приложите скриншот скриптов, скриншот выполненного проекта.**
 
@@ -27,29 +14,12 @@
 
 Секретный токен от yandex cloud должен вводится в консоли при каждом запуске terraform.
 
-Для выполнения этого задания нужно сгенирировать SSH-ключ командой ssh-keygen. Добавить в конфигурацию Terraform ключ в поле:
+### Решение 2
+
+#### Конфигурация terraform main.tf
 
 ```
- metadata = {
-    user-data = "${file("./meta.txt")}"
-  }
-``` 
-
-В файле meta прописать: 
- 
-```
- users:
-  - name: user
-    groups: sudo
-    shell: /bin/bash
-    sudo: ['ALL=(ALL) NOPASSWD:ALL']
-    ssh-authorized-keys:
-      - ssh-rsa  xxx
-```
-Где xxx — это ключ из файла /home/"name_ user"/.ssh/id_rsa.pub. Примерная конфигурация Terraform:
-
-```
-terraform {
+erraform {
   required_providers {
     yandex = {
       source = "yandex-cloud/yandex"
@@ -57,16 +27,8 @@ terraform {
   }
 }
 
-variable "yandex_cloud_token" {
-  type = string
-  description = "Данная переменная потребует ввести секретный токен в консоли при запуске terraform plan/apply"
-}
-
 provider "yandex" {
-  token     = var.yandex_cloud_token #секретные данные должны быть в сохранности!! Никогда не выкладывайте токен в публичный доступ.
-  cloud_id  = "xxx"
-  folder_id = "xxx"
-  zone      = "ru-central1-a"
+  zone      = "ru-central1-b"
 }
 
 resource "yandex_compute_instance" "vm-1" {
@@ -79,7 +41,8 @@ resource "yandex_compute_instance" "vm-1" {
 
   boot_disk {
     initialize_params {
-      image_id = "fd87kbts7j40q5b9rpjr"
+      image_id = "fd87j6d92jlrbjqbl32q" # ubuntu 22.04
+      size = 8
     }
   }
 
@@ -87,9 +50,9 @@ resource "yandex_compute_instance" "vm-1" {
     subnet_id = yandex_vpc_subnet.subnet-1.id
     nat       = true
   }
-  
+
   metadata = {
-    user-data = "${file("./meta.txt")}"
+    user-data = "${file("users.yml")}"
   }
 
 }
@@ -110,57 +73,41 @@ output "internal_ip_address_vm_1" {
 output "external_ip_address_vm_1" {
   value = yandex_compute_instance.vm-1.network_interface.0.nat_ip_address
 }
-```
-
-В конфигурации Ansible указать:
-
-* внешний IP-адрес машины, полученный из output external_ ip_ address_ vm_1, в файле hosts;
-* доступ в файле plabook *yml поля hosts.
 
 ```
-- hosts: 138.68.85.196
-  remote_user: user
+#### user-data
+
+```
+cloud-config
+users:
+  - name: digaliev
+    shell: /bin/bash
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    ssh-authorized-keys:
+     - ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBJBhOkv2AqrOTS1KujzdggjxcDV+HldOgZqN0aQ/zJGftnOeSEmoMR8AlovseSR1KA8Z4uwKt3ZFCQbaZDIanH0= digaliev@debian-lab
+
+```
+
+#### Конфигурации Ansible:
+
+```
+- name: PLAY 1
+  hosts: cloud-server
+  become: yes
   tasks:
-    - service:
-        name: nginx
-        state: started
-      become: yes
-      become_method: sudo
+  - name: Install Nginx
+    apt:
+      name: nginx
+      state: latest
+  - name: Starting Nginx
+    become: yes
+    service:
+      name: nginx
+      state: started
+      masked: no
 ```
-
-Провести тестирование. 
-
----
-
-## Дополнительные задания* (со звёздочкой)
-
-Их выполнение необязательное и не влияет на получение зачёта по домашнему заданию. Можете их решить, если хотите лучше разобраться в материале.лнить, если хотите глубже и/или шире разобраться в материале.
-
---- 
-### Задание 2*
-
-**Выполните действия, приложите скриншот скриптов, скриншот выполненного проекта.**
-
-1. Перестроить инфраструктуру и добавить в неё вторую виртуальную машину. 
-2. Установить на вторую виртуальную машину базу данных. 
-3. Выполнить проверку состояния запущенных служб через Ansible.
-
---- 
-### Задание 3*
-Изучите [инструкцию](https://cloud.yandex.ru/docs/tutorials/infrastructure-management/terraform-quickstart) yandex для terraform.
-Добейтесь работы паплайна с безопасной передачей токена от облака в terraform через переменные окружения. Для этого:
-
-1. Настройте профиль для yc tools по инструкции.
-2. Удалите из кода строчку "token = var.yandex_cloud_token". Terraform будет считывать значение ENV переменной YC_TOKEN.
-3. Выполните команду export YC_TOKEN=$(yc iam create-token) и в том же shell запустите terraform.
-4. Для того чтобы вам не нужно было каждый раз выполнять export - добавьте данную команду в самый конец файла ~/.bashrc
+#### Тестирование:
+![]()
 
 ---
-
-Дополнительные материалы: 
-
-1. [Nginx. Руководство для начинающих](https://nginx.org/ru/docs/beginners_guide.html). 
-2. [Руководство по Terraform](https://registry.terraform.io/providers/yandex-cloud/yandex/latest/doc). 
-3. [Ansible User Guide](https://docs.ansible.com/ansible/latest/user_guide/index.html).
-1. [Terraform Documentation](https://www.terraform.io/docs/index.html).
 

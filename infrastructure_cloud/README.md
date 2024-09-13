@@ -41,7 +41,7 @@ resource "yandex_compute_instance" "vm-1" {
 
   boot_disk {
     initialize_params {
-      image_id = "fd87j6d92jlrbjqbl32q" # ubuntu 22.04
+      image_id = "fd87j6d92jlrbjqbl32q"
       size = 8
     }
   }

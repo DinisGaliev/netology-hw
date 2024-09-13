@@ -118,6 +118,9 @@ terraform apply:
 
 ![](./img/7-03_1.3.png)
 
+Удаляем созданную инфраструктуру terraform destroy:
+
+![](./img/7-03_1.4.png)
 
 ---
 

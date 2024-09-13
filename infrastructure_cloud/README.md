@@ -100,7 +100,6 @@ users:
       name: nginx
       state: latest
   - name: Starting Nginx
-    become: yes
     service:
       name: nginx
       state: started

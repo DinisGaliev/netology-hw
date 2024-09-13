@@ -107,7 +107,18 @@ users:
       masked: no
 ```
 #### Тестирование:
-![]()
+terraform apply:
+
+![](./img/7-03_1.png)
+
+Результат ansible-playbook:
+
+![](./img/7-03_1.2.png)
+
+Результат curl http://89.169.171.229
+
+![](./img/7-03_1.3.png)
+
 
 ---
 

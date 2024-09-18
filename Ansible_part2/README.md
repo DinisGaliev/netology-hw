@@ -66,6 +66,58 @@
 
 ### Решение 2
 
+```
+---
+- name: PLAY 1
+  hosts: cloud-server
+  become: yes
+  tasks:
+  - name: Download and Unarchive
+    unarchive:
+      src: https://downloads.apache.org/kafka/3.8.0/kafka-3.8.0-src.tgz
+      dest: /usr/local
+      remote_src: yes
+
+- name: PLAY 2
+  hosts: cloud-server
+  become: yes
+  tasks:
+  - name: Install the tuned
+    apt:
+      name: tuned
+      state: present
+  - name: Start the tuned
+    systemd:
+      name: tuned
+      state: started
+      enabled: yes
+
+- name: PLAY 3
+  hosts: cloud-server
+  become: yes
+  vars:
+    path: /etc/update-motd.d/
+  tasks:
+  - name: Сhange the greeting
+    file:
+      path: "{{path}}"
+      mode: u=rw,g=rw,o=rw
+      recurse: yes
+  - name: Add the message
+    template:
+      src: motd.j2
+      dest: /etc/motd
+      mode: '644'
+```
+motd.j2
+
+```
+Hello, and welcome to "{{ ansible_facts['fqdn'] }}"
+
+```
+![](./img/Ansible_2.1.png)
+
+![](./img/Ansible_2.2.png)
 
 ## Задание 3
 

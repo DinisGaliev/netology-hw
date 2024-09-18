@@ -140,5 +140,85 @@ Hello, and welcome to "{{ ansible_facts['fqdn'] }}"
 - предоставьте скриншот браузера, отображающего сконфигурированный index.html в качестве сайта.
 
 ### Решение 3
+digaliev@debian-lab:~/.ansible/roles/apache/tasks$ cat main.yml
 
+```
+# tasks file for apache
+  - import_tasks: install.yml
+  - import_tasks: service.yml
+  - import_tasks: port.yml
+  - import_tasks: index.yml
+  - import_tasks: connection.yml
+
+```
+digaliev@debian-lab:~/.ansible/roles/apache/tasks$ cat install.yml
+
+```
+- name: Run the equivalent of "apt-get update" as a separate step
+  ansible.builtin.apt:
+    update_cache: yes
+- name: install apache web server
+  apt:
+    name: apache2
+    state: present
+- name: Start the apache2
+  systemd:
+    name: tuned
+    state: started
+    enabled: yes
+
+```
+
+digaliev@debian-lab:~/.ansible/roles/apache/tasks$ cat service.yml
+
+```
+ - name: start apache webserver
+    service:
+      name: apache2
+      state: started
+      enabled: yes
+
+```
+
+digaliev@debian-lab:~/.ansible/roles/apache/tasks$ cat connection.yml
+
+```
+- name: Check that you can connect (GET) to a page and it returns a status 200
+    ansible.builtin.uri:
+      url: "{{address}}"
+    vars:
+      address: "http://{{ ansible_facts.all_ipv4_addresses [0] }}"
+
+```
+digaliev@debian-lab:~/.ansible/roles/apache/tasks$ cat port.yml
+
+```
+- name: wait for port 80 to become open
+    wait_for:
+      port: 80
+      delay: 10
+
+```
+digaliev@debian-lab:~/.ansible/roles/apache/tasks$ cat index.yml
+
+```
+- name: add page
+  template:
+    src: "index.html.j2"
+    dest: "/var/www/html/index.html"
+    owner: root
+    group: root
+    mode: 0755
+
+```
+digaliev@debian-lab:~/.ansible/roles/apache/templates$ cat index.html.j2
+
+```
+<p>IP: {{ ansible_facts.all_ipv4_addresses [0] }}
+<p>CPU: {{ ansible_facts.processor }}
+<p>RAM_mb: {{ ansible_facts.memtotal_mb }}
+<p>vda1_size: {{ ansible_facts['devices']['vda']['partitions']['vda2']['size'] }}
+
+```
+![](./img/Ansible_3.1.png)
 

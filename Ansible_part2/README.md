@@ -55,7 +55,7 @@
       recurse: yes
 
 ```
-[](./img/Ansible_1.1.png)
+![](./img/Ansible_1.1.png)
 
 
 ## Задание 2
